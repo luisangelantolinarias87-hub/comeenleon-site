@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComeEnLeon.com — Tu guía para comer bien en León</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #C62828; /* rojo gastronómico */
+            --color-secondary: #1A1A1A; /* negro suave */
+            --color-background: #F5F3F0; /* beige claro tipo papel */
+            --color-accent: #D4AF37; /* dorado cálido */
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-secondary);
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        header {
+            background-color: var(--color-background);
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+        }
+        .logo span {
+            color: var(--color-secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-left: 4px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+            font-weight: 500;
+        }
+        nav ul li a {
+            color: var(--color-secondary);
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--color-primary);
+        }
+        /* Hero Section */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px;
+            background-image: url('https://images.unsplash.com/photo-1556912997-1360d302a8b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDl8fGxlb24lMjBmb29kfGVufDB8fHx8MTY5NzY0NjM5Ng&ixlib=rb-4.0.3&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-secondary);
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #b8962c;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        /* Section container */
+        .section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--color-primary);
+        }
+        /* About section */
+        .about-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            text-align: center;
+        }
+        .about-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: var(--color-primary);
+        }
+        .about-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        /* Card styles */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        .card-content {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--color-primary);
+        }
+        .card-details {
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .card-buttons {
+            margin-top: auto;
+            display: flex;
+            gap: 8px;
+        }
+        .card-buttons .btn {
+            flex: 1;
+            text-align: center;
+        }
+        /* Categories */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .category-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 200px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .category-card:hover .category-image {
+            transform: scale(1.1);
+        }
+        .category-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        .category-title {
+            position: relative;
+            z-index: 2;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+        }
+        /* Blog section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .blog-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .blog-card-content {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--color-primary);
+        }
+        .blog-card-button {
+            margin-top: auto;
+        }
+        /* CTA section */
+        .cta-section {
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        /* Footer */
+        footer {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: 40px 20px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .footer-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-menu li a {
+            color: white;
+            transition: color 0.3s ease;
+        }
+        .footer-menu li a:hover {
+            color: var(--color-accent);
+        }
+        .footer-bottom {
+            font-size: 0.8rem;
+            color: #cccccc;
+        }
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <span>COME</span><span class="logo-secondary">EnLeon.com</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Restaurantes</a></li>
+                <li><a href="#">Categorías</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ComeEnLeon.com — Tu guía para comer bien en León</h1>
+            <p>Descubre los mejores restaurantes, bares y sitios para comer en León.<br/>Recomendaciones reales, guías actualizadas y reservas con descuento.</p>
+            <div class="button-group">
+                <a href="#" class="btn btn-primary">Ver mejores restaurantes</a>
+                <a href="#" class="btn btn-secondary">Buscar por categoría</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / What is -->
+    <section class="section">
+        <h2 class="section-title">La guía más completa para comer en León</h2>
+        <p style="text-align:center; max-width:800px; margin: 0 auto 40px;">
+            En ComeEnLeon.com seleccionamos y analizamos los mejores restaurantes de León para ayudarte a elegir bien, ahorrar tiempo y disfrutar de la mejor gastronomía leonesa.
+            Tanto si buscas alta cocina, restaurantes tradicionales, bares de tapas o sitios baratos para comer, aquí encontrarás recomendaciones claras y fiables.
+        </p>
+        <div class="about-columns">
+            <div>
+                <div class="about-icon">✅</div>
+                <div class="about-title">Recomendaciones reales</div>
+                <p>Seleccionamos restaurantes por calidad, experiencia y opiniones.</p>
+            </div>
+            <div>
+                <div class="about-icon">📍</div>
+                <div class="about-title">Enfoque local</div>
+                <p>Especialistas en la gastronomía de León y su cultura.</p>
+            </div>
+            <div>
+                <div class="about-icon">💶</div>
+                <div class="about-title">Ahorra tiempo y dinero</div>
+                <p>Encuentra rápido lo que buscas y reserva con ventaja.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Restaurants -->
+    <section class="section">
+        <h2 class="section-title">Restaurantes destacados en León</h2>
+        <div class="cards">
+            <!-- Restaurant Card 1 -->
+            <div class="card">
+                <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-content">
+                    <div class="card-title">Cocinandos</div>
+                    <div class="card-details">⭐ 4.7 • 80–120€</div>
+                    <div class="card-buttons">
+                        <a href="#" class="btn btn-secondary">Ver más</a>
+                        <a href="#" class="btn btn-primary">Reservar</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Restaurant Card 2 -->
+            <div class="card">
+                <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1600891965059-72bb50ccfaac?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-content">
+                    <div class="card-title">Restaurante Pablo</div>
+                    <div class="card-details">⭐ 4.6 • 70–100€</div>
+                    <div class="card-buttons">
+                        <a href="#" class="btn btn-secondary">Ver más</a>
+                        <a href="#" class="btn btn-primary">Reservar</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Restaurant Card 3 -->
+            <div class="card">
+                <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1525138259923-57638bca85dc?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-content">
+                    <div class="card-title">Restaurante Ezequiel</div>
+                    <div class="card-details">⭐ 4.6 • 50–80€</div>
+                    <div class="card-buttons">
+                        <a href="#" class="btn btn-secondary">Ver más</a>
+                        <a href="#" class="btn btn-primary">Reservar</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Restaurant Card 4 -->
+            <div class="card">
+                <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-content">
+                    <div class="card-title">Casa Mando</div>
+                    <div class="card-details">⭐ 4.5 • 35–55€</div>
+                    <div class="card-buttons">
+                        <a href="#" class="btn btn-secondary">Ver más</a>
+                        <a href="#" class="btn btn-primary">Reservar</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Restaurant Card 5 -->
+            <div class="card">
+                <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1541558619081-b6a4045188a6?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-content">
+                    <div class="card-title">Bodegón</div>
+                    <div class="card-details">⭐ 4.4 • 25–40€</div>
+                    <div class="card-buttons">
+                        <a href="#" class="btn btn-secondary">Ver más</a>
+                        <a href="#" class="btn btn-primary">Reservar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:40px;">
+            <a href="#" class="btn btn-primary">Ver todos los restaurantes</a>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section">
+        <h2 class="section-title">Encuentra tu restaurante ideal en León</h2>
+        <div class="categories-grid">
+            <!-- Category 1 -->
+            <div class="category-card">
+                <div class="category-image" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-overlay"></div>
+                <div class="category-title">Mejores restaurantes de León</div>
+            </div>
+            <!-- Category 2 -->
+            <div class="category-card">
+                <div class="category-image" style="background-image:url('https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-overlay"></div>
+                <div class="category-title">Restaurantes baratos en León</div>
+            </div>
+            <!-- Category 3 -->
+            <div class="category-card">
+                <div class="category-image" style="background-image:url('https://images.unsplash.com/photo-1542314821-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-overlay"></div>
+                <div class="category-title">Restaurantes románticos en León</div>
+            </div>
+            <!-- Category 4 -->
+            <div class="category-card">
+                <div class="category-image" style="background-image:url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-overlay"></div>
+                <div class="category-title">Restaurantes tradicionales de León</div>
+            </div>
+            <!-- Category 5 -->
+            <div class="category-card">
+                <div class="category-image" style="background-image:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-overlay"></div>
+                <div class="category-title">Restaurantes en el Barrio Húmedo</div>
+            </div>
+            <!-- Category 6 -->
+            <div class="category-card">
+                <div class="category-image" style="background-image:url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-overlay"></div>
+                <div class="category-title">Restaurantes con estrella Michelin en León</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / Latest Guides -->
+    <section class="section">
+        <h2 class="section-title">Últimas guías y recomendaciones</h2>
+        <div class="blog-grid">
+            <!-- Blog 1 -->
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?auto=format&fit=crop&w=800&q=80" alt="Guía 1">
+                <div class="blog-card-content">
+                    <div class="blog-card-title">Los 10 mejores restaurantes de León en 2026</div>
+                    <p>Descubre nuestra selección de los mejores restaurantes de León para este año.</p>
+                    <div class="blog-card-button">
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog 2 -->
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80" alt="Guía 2">
+                <div class="blog-card-content">
+                    <div class="blog-card-title">Dónde comer barato en León por menos de 15€</div>
+                    <p>Las mejores opciones económicas para disfrutar de la gastronomía leonesa.</p>
+                    <div class="blog-card-button">
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog 3 -->
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=800&q=80" alt="Guía 3">
+                <div class="blog-card-content">
+                    <div class="blog-card-title">Mejores bares de tapas del Barrio Húmedo</div>
+                    <p>Un recorrido por los bares de tapas más emblemáticos del Barrio Húmedo de León.</p>
+                    <div class="blog-card-button">
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog 4 -->
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1468779068336-6104d63a6a94?auto=format&fit=crop&w=800&q=80" alt="Guía 4">
+                <div class="blog-card-content">
+                    <div class="blog-card-title">Restaurantes románticos en León para una cena en pareja</div>
+                    <p>Encuentra el lugar perfecto para una velada romántica con nuestra selección.</p>
+                    <div class="blog-card-button">
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:40px;">
+            <a href="#" class="btn btn-primary">Ver todas las guías</a>
+        </div>
+    </section>
+
+    <!-- Why trust section -->
+    <section class="section">
+        <h2 class="section-title">Por qué elegir ComeEnLeon.com</h2>
+        <p style="text-align:center; max-width:800px; margin: 0 auto 40px;">
+            Analizamos restaurantes con criterios claros: calidad de cocina, servicio, ambiente, relación calidad-precio y opiniones reales de clientes.
+        </p>
+        <div class="about-columns">
+            <div>
+                <div class="about-icon">📖</div>
+                <div class="about-title">Guías actualizadas</div>
+                <p>Información fresca y revisada continuamente para que siempre aciertes.</p>
+            </div>
+            <div>
+                <div class="about-icon">👍</div>
+                <div class="about-title">Recomendaciones fiables</div>
+                <p>Basadas en experiencia local y opiniones verificadas.</p>
+            </div>
+            <div>
+                <div class="about-icon">👩‍🍳</div>
+                <div class="about-title">Enfoque local y experto</div>
+                <p>Pasión por la gastronomía leonesa y conocimiento profundo de la ciudad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="cta-section">
+        <h2>¿No sabes dónde comer hoy en León?</h2>
+        <p>Explora nuestras guías, descubre nuevos restaurantes y reserva con facilidad desde ComeEnLeon.com.</p>
+        <div class="button-group">
+            <a href="#" class="btn btn-primary">Explorar restaurantes</a>
+            <a href="#" class="btn btn-secondary" style="border-color:white; color:white;">Ver guías gastronómicas</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="font-size:1.3rem; color:var(--color-accent);">
+                COME<span style="color:white;">EnLeon.com</span>
+            </div>
+            <p>Tu guía para comer bien en León.</p>
+            <ul class="footer-menu">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Restaurantes</a></li>
+                <li><a href="#">Categorías</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <ul class="footer-menu">
+                <li><a href="#">Aviso legal</a></li>
+                <li><a href="#">Política de privacidad</a></li>
+                <li><a href="#">Política de cookies</a></li>
+            </ul>
+            <div class="footer-bottom">
+                &copy; 2026 ComeEnLeon.com. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
