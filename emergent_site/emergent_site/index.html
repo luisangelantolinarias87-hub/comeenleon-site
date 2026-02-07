@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Come en León</title>
+  <!-- Enlazamos la hoja de estilos principal -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Estilos y librerías de Leaflet para el mapa interactivo -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+</head>
+<body>
+  <!-- Cabecera fija con navegación -->
+  <header class="site-header">
+    <div class="container">
+      <h1>Come en León</h1>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="#gourmet">Gourmet</a></li>
+          <li><a href="#baratos">Baratos</a></li>
+          <li><a href="#humedo">Barrio Húmedo</a></li>
+          <li><a href="#romantico">Barrio Romántico</a></li>
+          <li><a href="#modernas">Cervecerías Modernas</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sección de búsqueda y filtros -->
+  <section class="search-section">
+    <div class="container">
+      <input type="text" id="searchInput" placeholder="Buscar por nombre, barrio o precio...">
+      <button id="searchBtn">Buscar</button>
+    </div>
+  </section>
+
+  <!-- Mapa interactivo para ubicar los locales -->
+  <section class="map-section">
+    <div class="container">
+      <h2>Mapa de locales</h2>
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <!-- Sección de restaurantes gourmet -->
+  <section id="gourmet" class="category-section">
+    <div class="container">
+      <h2>Restaurantes gourmet</h2>
+      <div class="cards-grid">
+        <div class="card" data-name="Cocinandos" data-category="gourmet" data-price="alto">
+          <img src="images/gourmet.jpg" alt="Cocinandos">
+          <div class="card-content">
+            <h3>Cocinandos</h3>
+            <p>Alta cocina con una estrella Michelin.</p>
+            <a href="cocinandos.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="Casa Mando" data-category="gourmet" data-price="medio">
+          <img src="images/gourmet.jpg" alt="Casa Mando">
+          <div class="card-content">
+            <h3>Casa Mando</h3>
+            <p>Restaurante tradicional con productos locales.</p>
+            <a href="casa-mando.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="NiMÚ Azotea" data-category="gourmet" data-price="medio">
+          <img src="images/gourmet.jpg" alt="NiMÚ Azotea">
+          <div class="card-content">
+            <h3>NiMÚ&nbsp;Azotea</h3>
+            <p>Restaurante con vistas panorámicas de la ciudad.</p>
+            <a href="nimu-azotea.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="Restaurante Pablo" data-category="gourmet" data-price="alto">
+          <img src="images/gourmet.jpg" alt="Restaurante Pablo">
+          <div class="card-content">
+            <h3>Restaurante&nbsp;Pablo</h3>
+            <p>Cocina moderna y platos de temporada.</p>
+            <a href="restaurante-pablo.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de restaurantes baratos -->
+  <section id="baratos" class="category-section">
+    <div class="container">
+      <h2>Restaurantes baratos</h2>
+      <div class="cards-grid">
+        <div class="card" data-name="Bar Flechazo" data-category="barato" data-price="bajo">
+          <img src="images/humedo.jpg" alt="Bar Flechazo">
+          <div class="card-content">
+            <h3>Bar Flechazo</h3>
+            <p>Patatas fritas con toque de pimentón.</p>
+            <a href="bar-flechazo.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="El Rebote" data-category="barato" data-price="bajo">
+          <img src="images/humedo.jpg" alt="El Rebote">
+          <div class="card-content">
+            <h3>El&nbsp;Rebote</h3>
+            <p>Croquetas variadas en pleno Húmedo.</p>
+            <a href="bar-el-rebote.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="Los Cazurros" data-category="barato" data-price="bajo">
+          <img src="images/humedo.jpg" alt="Los Cazurros">
+          <div class="card-content">
+            <h3>Los Cazurros</h3>
+            <p>Tapas tradicionales y ambiente leonés.</p>
+            <a href="tabierna-los-cazurros.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="La Trébede" data-category="barato" data-price="bajo">
+          <img src="images/humedo.jpg" alt="La Trébede">
+          <div class="card-content">
+            <h3>La&nbsp;Trébede</h3>
+            <p>Picadillo de chorizo con patatas.</p>
+            <a href="bar-la-trebede.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="Entrecalles" data-category="barato" data-price="bajo">
+          <img src="images/humedo.jpg" alt="Entrecalles">
+          <div class="card-content">
+            <h3>Entrecalles</h3>
+            <p>Tapas caseras y vermut en el Romántico.</p>
+            <a href="bar-entrecalles.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="Jamón Jamón" data-category="barato" data-price="bajo">
+          <img src="images/humedo.jpg" alt="Jamón Jamón">
+          <div class="card-content">
+            <h3>Jamón&nbsp;Jamón</h3>
+            <p>Embutidos de calidad y trato familiar.</p>
+            <a href="bar-jamon-jamon.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Barrio Húmedo -->
+  <section id="humedo" class="category-section">
+    <div class="container">
+      <h2>Barrio Húmedo</h2>
+      <div class="cards-grid">
+        <div class="card" data-name="Bar Flechazo" data-category="humedo" data-price="bajo">
+          <img src="images/humedo.jpg" alt="Bar Flechazo">
+          <div class="card-content">
+            <h3>Bar Flechazo</h3>
+            <p>Patatas con pimentón, bar mítico del Húmedo.</p>
+            <a href="bar-flechazo.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="El Rebote" data-category="humedo" data-price="bajo">
+          <img src="images/humedo.jpg" alt="El Rebote">
+          <div class="card-content">
+            <h3>El Rebote</h3>
+            <p>Famosas croquetas artesanas.</p>
+            <a href="bar-el-rebote.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="Los Cazurros" data-category="humedo" data-price="bajo">
+          <img src="images/humedo.jpg" alt="Los Cazurros">
+          <div class="card-content">
+            <h3>Los Cazurros</h3>
+            <p>Decoración rural y tapas contundentes.</p>
+            <a href="tabierna-los-cazurros.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="La Bicha" data-category="humedo" data-price="bajo">
+          <img src="images/humedo.jpg" alt="La Bicha">
+          <div class="card-content">
+            <h3>La&nbsp;Bicha</h3>
+            <p>Morcilla leonesa y vino Prieto Picudo.</p>
+            <a href="bar-la-bicha.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="Jamón Jamón" data-category="humedo" data-price="bajo">
+          <img src="images/humedo.jpg" alt="Jamón Jamón">
+          <div class="card-content">
+            <h3>Jamón&nbsp;Jamón</h3>
+            <p>Tapas de embutidos y cecina de calidad.</p>
+            <a href="bar-jamon-jamon.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Barrio Romántico -->
+  <section id="romantico" class="category-section">
+    <div class="container">
+      <h2>Barrio Romántico</h2>
+      <div class="cards-grid">
+        <div class="card" data-name="Entrecalles" data-category="romantico" data-price="bajo">
+          <img src="images/romantico.jpg" alt="Entrecalles">
+          <div class="card-content">
+            <h3>Entrecalles</h3>
+            <p>Tapas caseras y vermut en el Romántico.</p>
+            <a href="bar-entrecalles.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="La Trébede" data-category="romantico" data-price="bajo">
+          <img src="images/romantico.jpg" alt="La Trébede">
+          <div class="card-content">
+            <h3>La&nbsp;Trébede</h3>
+            <p>Picadillo con patatas y vinos Godello.</p>
+            <a href="bar-la-trebede.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="Restaurante Ezequiel" data-category="romantico" data-price="medio">
+          <img src="images/romantico.jpg" alt="Restaurante Ezequiel">
+          <div class="card-content">
+            <h3>Ezequiel</h3>
+            <p>Restaurante tradicional leonés.</p>
+            <a href="restaurante-ezequiel.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Cervecerías y gastrobares modernos -->
+  <section id="modernas" class="category-section">
+    <div class="container">
+      <h2>Cervecerías y gastrobares modernos</h2>
+      <div class="cards-grid">
+        <div class="card" data-name="Four Lions Brewery" data-category="moderna" data-price="medio">
+          <img src="images/modern.jpg" alt="Four Lions Brewery">
+          <div class="card-content">
+            <h3>Four&nbsp;Lions Brewery</h3>
+            <p>Cervecería artesana con ambiente industrial.</p>
+            <a href="four-lions-brewery.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="NiMÚ Azotea" data-category="moderna" data-price="medio">
+          <img src="images/modern.jpg" alt="NiMÚ Azotea">
+          <div class="card-content">
+            <h3>NiMÚ&nbsp;Azotea</h3>
+            <p>Azotea con vistas 360º y cocina creativa.</p>
+            <a href="nimu-azotea.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+        <div class="card" data-name="Mesón Jabugo" data-category="moderna" data-price="medio">
+          <img src="images/modern.jpg" alt="Mesón Jabugo">
+          <div class="card-content">
+            <h3>Mesón&nbsp;Jabugo</h3>
+            <p>Especialidad en raciones de morcilla y croquetas.</p>
+            <a href="meson-jabugo.html" class="btn">Ver guía</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de página con información de contacto -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Come en León. Proyecto gastronómico sin ánimo de lucro.</p>
+      <p>Información y reservas sujetas a disponibilidad de los locales.</p>
+    </div>
+  </footer>
+
+  <!-- Carga de scripts: Leaflet y script personalizado -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
